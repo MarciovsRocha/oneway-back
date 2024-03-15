@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/oneway</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="OneWay_Azure" uuid="abd8ec96-0649-4ae4-9bc7-c42754fdc84f">
+      <driver-ref>azure.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://mvsr-oneway.database.windows.net:1433</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
