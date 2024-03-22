@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthSerever", "AuthSerever\AuthSerever.csproj", "{1FD757FB-72A6-4DA5-87B2-D0E8F0A11800}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpresaAPI", "EmpresaAPI\EmpresaAPI.csproj", "{66AF171B-62F8-4930-B379-CFAEB87E539B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneWay.EmpresaAPI", "OneWay.EmpresaAPI\OneWay.EmpresaAPI.csproj", "{228C73FF-9F42-4A8A-85FD-6E670589E2DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{1FD757FB-72A6-4DA5-87B2-D0E8F0A11800}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FD757FB-72A6-4DA5-87B2-D0E8F0A11800}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FD757FB-72A6-4DA5-87B2-D0E8F0A11800}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66AF171B-62F8-4930-B379-CFAEB87E539B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66AF171B-62F8-4930-B379-CFAEB87E539B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66AF171B-62F8-4930-B379-CFAEB87E539B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66AF171B-62F8-4930-B379-CFAEB87E539B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{228C73FF-9F42-4A8A-85FD-6E670589E2DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{228C73FF-9F42-4A8A-85FD-6E670589E2DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{228C73FF-9F42-4A8A-85FD-6E670589E2DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{228C73FF-9F42-4A8A-85FD-6E670589E2DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
