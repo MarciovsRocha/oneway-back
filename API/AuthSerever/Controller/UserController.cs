@@ -17,4 +17,11 @@ public class UserController : ControllerBase
         return Ok();
     }
 
+    [HttpGet]
+    public IActionResult Get()
+    {
+        var users = _userRepository.Get();
+        return Ok(users);
+    }
+
 }
