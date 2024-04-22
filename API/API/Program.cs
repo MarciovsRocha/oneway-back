@@ -1,5 +1,6 @@
 using API;
 using API.DAL;
+using API.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddTransient<IPaisRepository, PaisRepository>();
+builder.Services.AddTransient<IEstadoRepository, EstadoRepository>();
+builder.Services.AddTransient<ICidadeRepository, CidadeRepository>();
+builder.Services.AddTransient<IHotelRepository, HotelRepository>();
 
 var app = builder.Build();
 

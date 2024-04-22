@@ -5,6 +5,10 @@ namespace API.DAL;
 public partial class ConnectionContext : DbContext
 {
     public DbSet<Employee> Employees { get; set; }
+    public DbSet<Pais> Pais { get; set; }
+    public DbSet<Estado> Estados { get; set; }
+    public DbSet<Cidade> Cidades { get; set; }
+    public DbSet<Hotel> Hoteis { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
