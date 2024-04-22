@@ -10,4 +10,10 @@ public class EstadoViewModel
     // relacionamentos
     public Pais? Pais { get; set; }
     public ICollection<Cidade> Cidades { get; set; }
+
+    public EstadoViewModel(string? nome, int? idPais)
+    {
+        Nome = nome;
+        Id_Pais = idPais;
+    }
 }

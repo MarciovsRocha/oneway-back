@@ -28,4 +28,6 @@ public class Estado
         Pais = pais;
         Id_Pais = Pais.Id;
     }
+
+    public Estado() {}
 }

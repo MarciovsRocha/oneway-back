@@ -29,4 +29,6 @@ public class Cidade
         Estado = estado;
         this.Id_Estado = estado.Id;
     }
+
+    public Cidade() { }
 }

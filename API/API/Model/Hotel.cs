@@ -31,4 +31,6 @@ public class Hotel
             throw new Exception("O código informado de cidade é inválido");
         }
     }
+
+    public Hotel() { }
 }
