@@ -1,4 +1,5 @@
 ﻿using API.DAL;
+using API.DAL.Interfaces;
 using API.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +15,7 @@ public class PaisController : ControllerBase
     public IActionResult Add(PaisViewModel paisViewModel)
     {
         _paisRepository.Add(new Pais(paisViewModel.Nome));
-        return Ok();
+        return Created();
     }
 
     [HttpGet]
@@ -22,5 +23,12 @@ public class PaisController : ControllerBase
     {
         var paises = _paisRepository.Get();
         return Ok(paises);
+    }
+
+    [HttpGet("nome={nome}")]
+    public IActionResult Get(string nome)
+    {
+        var pais = _paisRepository.GetByName(nome);
+        return Ok(pais);
     }
 }

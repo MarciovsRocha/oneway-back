@@ -1,4 +1,6 @@
-﻿namespace API.DAL;
+﻿using API.DAL.Interfaces;
+
+namespace API.DAL;
 
 public class PaisRepository : IPaisRepository
 {
@@ -14,5 +16,10 @@ public class PaisRepository : IPaisRepository
     public List<Pais> Get()
     {
         return _context.Pais.ToList();
+    }
+
+    public Pais GetByName(string nome)
+    {
+        return _context.Pais.FirstOrDefault(p => p.Nome.Equals(nome));
     }
 }
