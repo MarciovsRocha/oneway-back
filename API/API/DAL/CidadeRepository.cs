@@ -1,4 +1,6 @@
-﻿namespace API.DAL;
+﻿using API.DAL.Interfaces;
+
+namespace API.DAL;
 
 public class CidadeRepository : ICidadeRepository
 {

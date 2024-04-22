@@ -1,4 +1,5 @@
 ﻿using API.DAL;
+using API.DAL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -13,7 +14,7 @@ public class EstadoController : ControllerBase
     public IActionResult Add(Estado estado)
     {
         _estadoRepository.Add(new Estado(estado.Nome, estado.Id_Pais));
-        return Ok();
+        return Created();
     }
 
     [HttpGet]

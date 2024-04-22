@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations.Operations;
-
-namespace API;
+﻿namespace API.DAL.Interfaces;
 
 public interface IEstadoRepository
 {

@@ -1,4 +1,4 @@
-﻿namespace API;
+﻿namespace API.DAL.Interfaces;
 
 public interface IHotelRepository
 {
