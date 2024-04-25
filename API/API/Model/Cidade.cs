@@ -23,7 +23,7 @@ public class Cidade
         }
     }
 
-    public Cidade(string? nome, Estado? estado)
+    public Cidade(string? nome, Estado estado)
     {
         Nome = nome;
         Estado = estado;

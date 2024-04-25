@@ -22,7 +22,7 @@ public class Estado
         } 
     }
 
-    public Estado(string? nome, Pais? pais)
+    public Estado(string? nome, Pais pais)
     {
         Nome = nome;
         Pais = pais;

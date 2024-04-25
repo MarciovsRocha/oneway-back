@@ -12,7 +12,7 @@ public class Hotel
     public Cidade? Cidade { get; set; }
 
 
-    public Hotel(string? nome, decimal? precoMedioDiaria, Cidade? cidade)
+    public Hotel(string? nome, decimal? precoMedioDiaria, Cidade cidade)
     {
         Nome = nome;
         PrecoMedioDiaria = precoMedioDiaria;
