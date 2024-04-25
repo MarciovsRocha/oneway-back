@@ -9,7 +9,7 @@ public class EstadoViewModel
     public int? Id_Pais { get; set; }
     // relacionamentos
     public Pais? Pais { get; set; }
-    public ICollection<Cidade> Cidades { get; set; }
+    public ICollection<Cidade>? Cidades { get; set; }
 
     public EstadoViewModel(string? nome, int? idPais)
     {
