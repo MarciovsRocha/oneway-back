@@ -12,7 +12,7 @@ public partial class ConnectionContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=oneway2.database.windows.net;Database=oneway;User=api_user;Password=bHoiwym4oUGArVGh");
+        optionsBuilder.UseSqlServer("Server=mvsr-oneway.database.windows.net;Database=oneway;User=api_user;Password=bHoiwym4oUGArVGh");
         base.OnConfiguring(optionsBuilder);
     }
 }
