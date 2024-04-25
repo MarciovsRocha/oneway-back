@@ -9,12 +9,12 @@ public class UserRepository : IUserRepository
     
     public void Add(User user)
     {
-        _context.Users.Add(user);
+        _context.User.Add(user);
         _context.SaveChanges();
     }
 
     public List<User> Get()
     {
-        return _context.Users.ToList();
+        return _context.User.ToList();
     }
 }

@@ -9,7 +9,7 @@ public partial class ConnectionContext : DbContext
     public DbSet<Estado> Estados { get; set; }
     public DbSet<Cidade> Cidades { get; set; }
     public DbSet<Hotel> Hoteis { get; set; }
-    public DbSet<User> Users { get; set; }
+    public DbSet<User> User { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

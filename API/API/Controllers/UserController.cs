@@ -23,7 +23,7 @@ public class UserController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        var employees = _userRepository.Get();
-        return Ok(employees);
+        var users = _userRepository.Get();
+        return Ok(users);
     }
 }
