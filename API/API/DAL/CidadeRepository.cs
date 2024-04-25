@@ -16,4 +16,9 @@ public class CidadeRepository : ICidadeRepository
     {
         return _context.Cidades.ToList();
     }
+
+    public Cidade GetByName(string nome)
+    {
+        return _context.Cidades.FirstOrDefault(c => c.Nome.Equals(nome));
+    }
 }

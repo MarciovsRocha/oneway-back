@@ -16,4 +16,9 @@ public class HotelRepository : IHotelRepository
     {
         return _context.Hoteis.ToList();
     }
+
+    public Hotel GetById(int id)
+    {
+        return _context.Hoteis.FirstOrDefault(h => h.Id == id);
+    }
 }
