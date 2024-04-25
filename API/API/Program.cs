@@ -3,9 +3,21 @@ using API.DAL;
 using API.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
+var OrigensParaCors = "_OrigensParaCors";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors(options =>
+    options.AddPolicy(name: OrigensParaCors,
+        policy =>
+        {
+            policy.WithOrigins(
+                "http:localhost:4200"
+                , "http://127.0.0.1:4200"
+                );
+        })
+);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -26,6 +38,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(OrigensParaCors);
 
 app.UseHttpsRedirection();
 
