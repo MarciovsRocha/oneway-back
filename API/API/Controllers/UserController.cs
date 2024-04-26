@@ -19,14 +19,14 @@ public class UserController : ControllerBase
         {
             return BadRequest("Campos inválidos.");
         }
-        var emailTratado = user.email.ToLower().Trim();
-        var existingUser = await _userRepository.GetUserByEmailAsync(emailTratado);
+        var formattedEmail = user.email.ToLower().Trim();
+        var existingUser = await _userRepository.GetUserByEmailAsync(formattedEmail);
         if (existingUser is not null)
         {
             return BadRequest("O e-mail já está em uso.");
         }
-        await _userRepository.CreateAsync(new User(user.nome, emailTratado, user.senha.Trim(), null));
-        return Ok(emailTratado);
+        await _userRepository.CreateAsync(new User(user.nome, formattedEmail, user.senha.Trim(), null));
+        return Ok(formattedEmail);
     }
 
     [HttpGet]

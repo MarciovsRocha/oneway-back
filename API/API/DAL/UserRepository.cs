@@ -1,5 +1,4 @@
 ﻿using API.DAL.Interfaces;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.DAL;
