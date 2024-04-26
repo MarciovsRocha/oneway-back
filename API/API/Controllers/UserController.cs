@@ -42,7 +42,8 @@ public class UserController : ControllerBase
         if (user != null && !string.IsNullOrEmpty(user.email) && !string.IsNullOrEmpty(user.senha))
         {
             var userFound = await _userRepository.GetUserByEmailAsync(user.email.ToLower());
-            if (userFound is not null && userFound.senha == user.senha.Trim()) {
+            if (userFound is not null && userFound.senha == user.senha.Trim()) 
+            {
                 var userResponse = new UserResponseViewModel(userFound.nome, userFound.email);
                 return Ok(userResponse);
             }
