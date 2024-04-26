@@ -15,7 +15,9 @@ builder.Services.AddCors(options =>
             policy.WithOrigins(
                 "http://localhost:4200"
                 , "http://127.0.0.1:4200"
-                );
+                )
+                .AllowAnyHeader()
+                .AllowAnyMethod();
         })
 );
 
@@ -24,6 +26,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddTransient<IPaisRepository, PaisRepository>();
 builder.Services.AddTransient<IEstadoRepository, EstadoRepository>();
