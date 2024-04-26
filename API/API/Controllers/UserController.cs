@@ -2,22 +2,31 @@
 using API.DAL.Interfaces;
 using API.ViewModel;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace API.Controllers;
 
 [ApiController]
-[Route("api/v1/user")]
+[Route("[controller]")]
 public class UserController : ControllerBase
 {
     private readonly IUserRepository _userRepository = new UserRepository();
-    
+
 
     [HttpPost]
-    public IActionResult Add(UserViewModel user)
-    {
-        _userRepository.Add(new User(user.nome, user.email, "null", user.senha));
-        return Ok();
+    public async Task<IActionResult> AddAsync(UserViewModel user)
+    {   
+        if (user == null || string.IsNullOrEmpty(user.email) || string.IsNullOrEmpty(user.senha))
+        {
+            return BadRequest("Campos inválidos.");
+        }
+        var emailTratado = user.email.ToLower().Trim();
+        var existingUser = await _userRepository.GetUserByEmailAsync(emailTratado);
+        if (existingUser is not null)
+        {
+            return BadRequest("O e-mail já está em uso.");
+        }
+        await _userRepository.CreateAsync(new User(user.nome, emailTratado, user.senha.Trim(), null));
+        return Ok(emailTratado);
     }
 
     [HttpGet]
@@ -25,5 +34,19 @@ public class UserController : ControllerBase
     {
         var users = _userRepository.Get();
         return Ok(users);
+    }
+
+    [HttpPost("authenticate")]
+    public async Task<IActionResult> AuthenticateAsync(AuthenticationViewModel user)
+    {
+        if (user != null && !string.IsNullOrEmpty(user.email) && !string.IsNullOrEmpty(user.senha))
+        {
+            var userFound = await _userRepository.GetUserByEmailAsync(user.email.ToLower());
+            if (userFound is not null && userFound.senha == user.senha.Trim()) {
+                var userResponse = new UserResponseViewModel(userFound.nome, userFound.email);
+                return Ok(userResponse);
+            }
+        }
+        return BadRequest("Usuário ou senha inválidos.");
     }
 }

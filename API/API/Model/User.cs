@@ -11,11 +11,13 @@ public class User
     public string? servico { get; private set; }
     public string? senha { get; private set; }
 
-    public User(string? nome, string? email, string? servico, string? senha)
+    public User(string? nome, string? email, string? senha, string? servico)
     {
         this.nome = nome;
         this.email = email;
-        this.servico = servico;
         this.senha = senha;
+        this.servico = servico;
     }
+
+    public User() {}
 }

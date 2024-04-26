@@ -8,11 +8,11 @@ public class UserViewModel
     public string? senha { get; private set; }
 
     
-    public UserViewModel(string? nome, string? email, string? servico, string? senha)
+    public UserViewModel(string? nome, string? email,  string? senha, string? servico)
     {
         this.nome = nome;
         this.email = email;
-        this.servico = servico;
         this.senha = senha;
+        this.servico = servico;
     }
 }
