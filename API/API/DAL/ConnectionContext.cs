@@ -1,12 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace API.DAL;
 
 public partial class ConnectionContext : DbContext
 {
-    private readonly IConfiguration _configuration;
-    
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Pais> Pais { get; set; }
     public DbSet<Estado> Estados { get; set; }
@@ -14,14 +11,9 @@ public partial class ConnectionContext : DbContext
     public DbSet<Hotel> Hoteis { get; set; }
     public DbSet<User> User { get; set; }
 
-    public ConnectionContext(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
-    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(_configuration.GetValue<string>("ConnectionStrings:DefaultConnection"));
+        optionsBuilder.UseSqlServer("Server=mvsr-oneway.database.windows.net;Database=oneway;User=api_user;Password=bHoiwym4oUGArVGh");
         base.OnConfiguring(optionsBuilder);
     }
 }
