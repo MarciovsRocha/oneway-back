@@ -21,4 +21,9 @@ public class CidadeRepository : ICidadeRepository
     {
         return _context.Cidades.FirstOrDefault(c => c.Nome.Equals(nome));
     }
+
+    public Cidade GetById(int id)
+    {
+        return _context.Cidades.FirstOrDefault(c => c.Id == id);
+    }
 }

@@ -33,6 +33,8 @@ builder.Services.AddTransient<IEstadoRepository, EstadoRepository>();
 builder.Services.AddTransient<ICidadeRepository, CidadeRepository>();
 builder.Services.AddTransient<IHotelRepository, HotelRepository>();
 
+var clientSecret = builder.Configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

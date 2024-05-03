@@ -10,7 +10,8 @@ public class Hotel
     public decimal? PrecoMedioDiaria { get; set; }
     public int? Id_Cidade { get; set; }
     public Cidade? Cidade { get; set; }
-
+    public string? Descricao { get; set; }
+    
 
     public Hotel(string? nome, decimal? precoMedioDiaria, Cidade cidade)
     {
