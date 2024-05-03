@@ -26,7 +26,7 @@ public class UserController : ControllerBase
             return BadRequest("O e-mail já está em uso.");
         }
         await _userRepository.CreateAsync(new User(user.nome, formattedEmail, user.senha.Trim(), null));
-        return Ok(formattedEmail);
+        return Ok();
     }
 
     [HttpGet]
