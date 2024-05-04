@@ -8,17 +8,17 @@ public class HotelRepository : IHotelRepository
     
     public void Add(Hotel hotel)
     {
-        _context.Hoteis.Add(hotel);
+        _context.Hotel.Add(hotel);
         _context.SaveChanges();
     }
 
     public List<Hotel> Get()
     {
-        return _context.Hoteis.ToList();
+        return _context.Hotel.ToList();
     }
 
     public Hotel GetById(int id)
     {
-        return _context.Hoteis.FirstOrDefault(h => h.Id == id);
+        return _context.Hotel.FirstOrDefault(h => h.Id == id);
     }
 }

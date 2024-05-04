@@ -8,22 +8,22 @@ public class CidadeRepository : ICidadeRepository
     
     public void Add(Cidade cidade)
     {
-        _context.Cidades.Add(cidade);
+        _context.Cidade.Add(cidade);
         _context.SaveChanges();
     }
 
     public List<Cidade> Get()
     {
-        return _context.Cidades.ToList();
+        return _context.Cidade.ToList();
     }
 
     public Cidade GetByName(string nome)
     {
-        return _context.Cidades.FirstOrDefault(c => c.Nome.Equals(nome));
+        return _context.Cidade.FirstOrDefault(c => c.Nome.Equals(nome));
     }
 
     public Cidade GetById(int id)
     {
-        return _context.Cidades.FirstOrDefault(c => c.Id == id);
+        return _context.Cidade.FirstOrDefault(c => c.Id == id);
     }
 }
