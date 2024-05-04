@@ -13,9 +13,9 @@ public class HotelController : ControllerBase
     private readonly IHotelRepository _hotelRepository = new HotelRepository();
 
     [HttpPost]
-    public IActionResult Add(HotelViewModel hotelViewModel)
+    public IActionResult Add(Hotel hotel)
     {
-        _hotelRepository.Add(new Hotel(hotelViewModel.Nome, hotelViewModel.PrecoMedioDiaria, hotelViewModel.Id_Cidade));
+        _hotelRepository.Add(new Hotel(hotel.Nome, hotel.PrecoMedioDiaria, hotel.Id_Cidade, hotel.Descricao));
         return Created();
     }
 
