@@ -12,9 +12,9 @@ public class CidadeController : ControllerBase
     private readonly ICidadeRepository _cidadeRepository = new CidadeRepository();
 
     [HttpPost]
-    public IActionResult Add(CidadeViewModel cidadeViewModel)
+    public IActionResult Add(Cidade cidade)
     {
-        _cidadeRepository.Add(new Cidade(cidadeViewModel.Id_Estado, cidadeViewModel.Nome));
+        _cidadeRepository.Add(new Cidade(cidade.Id_Estado, cidade.Nome));
         return Created();
     }
 
