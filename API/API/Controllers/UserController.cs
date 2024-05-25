@@ -1,19 +1,18 @@
 ﻿using API.DAL;
 using API.DAL.Interfaces;
-using API.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("user")]
 public class UserController : ControllerBase
 {
     private readonly IUserRepository _userRepository = new UserRepository();
 
 
     [HttpPost]
-    public async Task<IActionResult> AddAsync(UserViewModel user)
+    public async Task<IActionResult> AddAsync(User user)
     {   
         if (user == null || string.IsNullOrEmpty(user.email) || string.IsNullOrEmpty(user.senha))
         {
@@ -34,20 +33,5 @@ public class UserController : ControllerBase
     {
         var users = _userRepository.Get();
         return Ok(users);
-    }
-
-    [HttpPost("authenticate")]
-    public async Task<IActionResult> AuthenticateAsync(AuthenticationViewModel user)
-    {
-        if (user != null && !string.IsNullOrEmpty(user.email) && !string.IsNullOrEmpty(user.senha))
-        {
-            var userFound = await _userRepository.GetUserByEmailAsync(user.email.ToLower());
-            if (userFound is not null && userFound.senha == user.senha.Trim()) 
-            {
-                var userResponse = new UserResponseViewModel(userFound.nome, userFound.email);
-                return Ok(userResponse);
-            }
-        }
-        return BadRequest("Usuário ou senha inválidos.");
     }
 }

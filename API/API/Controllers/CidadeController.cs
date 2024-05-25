@@ -1,6 +1,5 @@
 ﻿using API.DAL;
 using API.DAL.Interfaces;
-using API.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -14,7 +13,7 @@ public class CidadeController : ControllerBase
     [HttpPost]
     public IActionResult Add(Cidade cidade)
     {
-        _cidadeRepository.Add(new Cidade(cidade.Id_Estado, cidade.Nome));
+        _cidadeRepository.Add(cidade);
         return Created();
     }
 
@@ -30,6 +29,34 @@ public class CidadeController : ControllerBase
     {
         var cidades = _cidadeRepository.GetByName(nome);
         return Ok(cidades);
+    }
+
+    [HttpGet("id={id:int}")]
+    public IActionResult Get(int id)
+    {
+        var cidade = _cidadeRepository.GetById(id);
+        return Ok(cidade);
+    }
+
+    [HttpPut]
+    public IActionResult Update(Cidade cidade)
+    {
+        _cidadeRepository.Update(cidade);
+        return Ok();
+    }
+    
+    [HttpDelete]
+    public IActionResult Remove(Cidade cidade)
+    {
+        _cidadeRepository.Remove(cidade);
+        return Ok();
+    }
+
+    [HttpDelete("id={id:int}")]
+    public IActionResult Remove(int id)
+    {
+        _cidadeRepository.Remove(id);
+        return Ok();
     }
     
 }

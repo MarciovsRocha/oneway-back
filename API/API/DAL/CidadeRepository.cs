@@ -26,4 +26,23 @@ public class CidadeRepository : ICidadeRepository
     {
         return _context.Cidade.FirstOrDefault(c => c.Id == id);
     }
+
+    public void Update(Cidade cidade)
+    {
+        _context.Update(cidade);
+        _context.SaveChanges();
+    }
+
+    public void Remove(Cidade cidade)
+    {
+        _context.Cidade.Remove(cidade);
+        _context.SaveChanges();
+    }
+
+    public void Remove(int id_cidade)
+    {
+        var cidade_remove = GetById(id_cidade);
+        _context.Cidade.Remove(cidade_remove);
+        _context.SaveChanges();
+    }
 }

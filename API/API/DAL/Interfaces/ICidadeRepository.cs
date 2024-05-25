@@ -7,4 +7,7 @@ public interface ICidadeRepository
     Cidade GetByName(string nome);
 
     Cidade GetById(int id);
+    void Update(Cidade cidade);
+    void Remove(Cidade cidade);
+    void Remove(int id_cidade);
 }

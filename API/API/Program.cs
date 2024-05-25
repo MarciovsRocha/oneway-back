@@ -31,7 +31,7 @@ builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddTransient<IPaisRepository, PaisRepository>();
 builder.Services.AddTransient<IEstadoRepository, EstadoRepository>();
 builder.Services.AddTransient<ICidadeRepository, CidadeRepository>();
-builder.Services.AddTransient<IHotelRepository, HotelRepository>();
+builder.Services.AddTransient<IProdutoRepository, ProdutoRepository>();
 
 var app = builder.Build();
 

@@ -1,8 +1,6 @@
 ﻿using API.DAL;
 using API.DAL.Interfaces;
-using API.ViewModel;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace API.Controllers;
 
@@ -14,9 +12,9 @@ public class EmployeeController : ControllerBase
     
 
     [HttpPost]
-    public IActionResult Add(EmployeeViewModel employeeView)
+    public IActionResult Add(Employee employee)
     {
-        _employeeRepository.Add(new Employee(employeeView.name, employeeView.age, "null"));
+        _employeeRepository.Add(new Employee(employee.name, employee.age, "null"));
         return Ok();
     }
 

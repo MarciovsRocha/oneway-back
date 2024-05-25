@@ -1,18 +1,62 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using API.DAL.Interfaces;
+using API.DAL;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/v1/produto")]
 public class ProdutoController : ControllerBase
 {
-    public ProdutoController()
+    private readonly IProdutoRepository _produtoRepository = new ProdutoRepository();
+
+    [HttpPost]
+    public IActionResult Add(Produto produto)
     {
+        _produtoRepository.Add(produto);
+        return Created();
     }
 
-    [HttpGet(Name = "GetProduto")]
-    public IEnumerable<Produto> Get()
+    [HttpGet]
+    public IActionResult Get()
     {
-        return Enumerable.Range(1, 10).Select(index=> new Produto{id = Random.Shared.Next(1,100), preco = Random.Shared.NextDouble()}).ToArray();
+        var produtos = _produtoRepository.Get();
+        return Ok(produtos);
     }
+    
+    [HttpGet("id={id:int}")]
+    public IActionResult Get(int id)
+    {
+        var produto = _produtoRepository.GetById(id);
+        return Ok(produto);
+    }
+
+    [HttpPut]
+    public IActionResult Update(Produto produto)
+    {
+        _produtoRepository.Update(produto);
+        return Ok();
+    }
+
+    [HttpDelete]
+    public IActionResult Remove(Produto produto)
+    {
+        _produtoRepository.Remove(produto);
+        return Ok();
+    }
+    
+    [HttpDelete("id={id:int}")]
+    public IActionResult Remove(int id){
+        _produtoRepository.Remove(id);
+        return Ok();
+    }
+
+    [HttpGet("type={type:int}")]
+    public IActionResult GetByType(int type)
+    {
+        var produto = _produtoRepository.GetByType(type);
+        return Ok(produto);
+    }
+    
 }

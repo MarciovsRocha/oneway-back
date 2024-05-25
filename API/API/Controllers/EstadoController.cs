@@ -1,5 +1,6 @@
 ﻿using API.DAL;
 using API.DAL.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -13,7 +14,7 @@ public class EstadoController : ControllerBase
     [HttpPost]
     public IActionResult Add(Estado estado)
     {
-        _estadoRepository.Add(new Estado(estado.Nome, estado.Id_Pais));
+        _estadoRepository.Add(estado);
         return Created();
     }
 
@@ -22,5 +23,33 @@ public class EstadoController : ControllerBase
     {
         var estados = _estadoRepository.Get();
         return Ok(estados);
+    }
+
+    [HttpGet("id={id:int}")]
+    public IActionResult Get(int id)
+    {
+        var estado = _estadoRepository.GetById(id);
+        return Ok(estado);
+    }
+
+    [HttpPut]
+    public IActionResult Update(Estado estado)
+    {
+        _estadoRepository.Update(estado);
+        return Ok();
+    }
+
+    [HttpDelete]
+    public IActionResult Remove(Estado estado)
+    {
+        _estadoRepository.Remove(estado);
+        return Ok();
+    }
+
+    [HttpDelete("id={id:int}")]
+    public IActionResult Remove(int id)
+    {
+        _estadoRepository.Remove(id);
+        return Ok();
     }
 }

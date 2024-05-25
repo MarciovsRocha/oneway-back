@@ -1,7 +1,7 @@
 ﻿using API.DAL;
 using API.DAL.Interfaces;
-using API.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 
 namespace API.Controllers;
 
@@ -10,11 +10,11 @@ namespace API.Controllers;
 public class PaisController : ControllerBase
 {
     private readonly IPaisRepository _paisRepository = new PaisRepository();
-    
+
     [HttpPost]
-    public IActionResult Add(PaisViewModel paisViewModel)
+    public IActionResult Add(Pais paisViewModel)
     {
-        _paisRepository.Add(new Pais(paisViewModel.Nome));
+        _paisRepository.Add(paisViewModel);
         return Created();
     }
 
@@ -30,5 +30,33 @@ public class PaisController : ControllerBase
     {
         var pais = _paisRepository.GetByName(nome);
         return Ok(pais);
+    }
+
+    [HttpGet("id=i{d:int}")]
+    public IActionResult Get(int id)
+    {
+        var pais = _paisRepository.GetById(id);
+        return Ok(pais);
+    }
+
+    [HttpPut]
+    public IActionResult Update(Pais pais)
+    {
+        _paisRepository.Update(pais);
+        return Ok();
+    }
+
+    [HttpDelete]
+    public IActionResult Remove(Pais pais)
+    {
+        _paisRepository.Remove(pais);
+        return Ok();
+    }
+
+    [HttpDelete("id={id:int}")]
+    public IActionResult Remove(int id)
+    {
+        _paisRepository.Remove(id);
+        return Ok();
     }
 }
