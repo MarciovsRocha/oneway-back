@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using API;
 using API.DAL;
 using API.DAL.Interfaces;
@@ -22,6 +23,11 @@ builder.Services.AddCors(options =>
 );
 
 builder.Services.AddControllers();
+
+// Configuração para ignorar ciclos dentre relacionamentos dos objetos
+builder.Services.AddControllers().AddJsonOptions(
+    options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -1,4 +1,5 @@
 ﻿using API.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.DAL;
 
@@ -14,7 +15,7 @@ public class ProdutoRepository : IProdutoRepository
 
     public List<Produto> Get()
     {
-        return _context.Produto.ToList();
+        return _context.Produto.Include(produto => produto.Cidade).ToList();
     }
 
     public Produto GetById(int id)

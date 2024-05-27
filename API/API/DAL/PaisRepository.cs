@@ -1,4 +1,5 @@
 ﻿using API.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.DAL;
 
@@ -15,7 +16,7 @@ public class PaisRepository : IPaisRepository
 
     public List<Pais> Get()
     {
-        return _context.Pais.ToList();
+        return _context.Pais.Include(pais => pais.Estados).ToList();
     }
 
     public Pais GetByName(string nome)

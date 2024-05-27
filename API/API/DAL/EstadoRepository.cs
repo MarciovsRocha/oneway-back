@@ -1,4 +1,5 @@
 ﻿using API.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.DAL;
 
@@ -14,7 +15,7 @@ public class EstadoRepository : IEstadoRepository
 
     public List<Estado> Get()
     {
-        return _context.Estado.ToList();
+        return _context.Estado.Include(estado => estado.Cidades).ToList();
     }
 
     public Estado GetById(int id)

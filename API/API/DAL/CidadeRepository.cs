@@ -1,4 +1,5 @@
 ﻿using API.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.DAL;
 
@@ -14,7 +15,7 @@ public class CidadeRepository : ICidadeRepository
 
     public List<Cidade> Get()
     {
-        return _context.Cidade.ToList();
+        return _context.Cidade.Include(cidade => cidade.Estado).ToList();
     }
 
     public Cidade GetByName(string nome)
