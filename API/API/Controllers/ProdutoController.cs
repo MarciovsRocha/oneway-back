@@ -9,7 +9,12 @@ namespace API.Controllers;
 [Route("api/v1/produto")]
 public class ProdutoController : ControllerBase
 {
-    private readonly IProdutoRepository _produtoRepository = new ProdutoRepository();
+    private readonly IProdutoRepository _produtoRepository;
+
+    public ProdutoController(IProdutoRepository produtoRepository)
+    {
+        _produtoRepository = produtoRepository;
+    }
 
     [HttpPost]
     public IActionResult Add(Produto produto)

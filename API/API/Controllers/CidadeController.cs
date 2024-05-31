@@ -8,7 +8,12 @@ namespace API.Controllers;
 [Route("api/v1/cidade")]
 public class CidadeController : ControllerBase
 {
-    private readonly ICidadeRepository _cidadeRepository = new CidadeRepository();
+    private readonly ICidadeRepository _cidadeRepository;
+
+    public CidadeController(ICidadeRepository cidadeRepository)
+    {
+        _cidadeRepository = cidadeRepository;
+    }
 
     [HttpPost]
     public IActionResult Add(Cidade cidade)

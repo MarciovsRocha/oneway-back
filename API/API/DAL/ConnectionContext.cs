@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using API.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.DAL;
 
-public partial class ConnectionContext : DbContext
+public class ConnectionContext : DbContext, IConnectionContext
 {
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Pais> Pais { get; set; }
@@ -11,11 +12,7 @@ public partial class ConnectionContext : DbContext
     public DbSet<Produto> Produto { get; set; }
     public DbSet<User> User { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer("Server=mvsr-oneway.database.windows.net;Database=oneway;User=api_user;Password=bHoiwym4oUGArVGh");
-        base.OnConfiguring(optionsBuilder);
-    }
+    public ConnectionContext(DbContextOptions options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -28,12 +25,12 @@ public partial class ConnectionContext : DbContext
         modelBuilder.Entity<Estado>()
             .HasMany<Cidade>(estado => estado.Cidades)
             .WithOne(cidade => cidade.Estado)
-            .HasForeignKey(cidade => cidade.Id_Estado)
+            .HasForeignKey("Id_Estado")
             .HasPrincipalKey(estado => estado.Id);
         modelBuilder.Entity<Produto>()
             .HasOne(produto => produto.Cidade)
             .WithMany(cidade => cidade.Produtos)
-            .HasForeignKey(produto => produto.Id_Cidade)
+            .HasForeignKey("Id_Cidade")
             .HasPrincipalKey(cidade => cidade.Id);
         modelBuilder.Entity<User>().HasKey(u => u.id);
         base.OnModelCreating(modelBuilder); 

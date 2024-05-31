@@ -9,7 +9,12 @@ namespace API.Controllers;
 [Route("api/v1/pais")]
 public class PaisController : ControllerBase
 {
-    private readonly IPaisRepository _paisRepository = new PaisRepository();
+    private readonly IPaisRepository _paisRepository;
+
+    public PaisController(IPaisRepository paisRepository)
+    {
+        _paisRepository = paisRepository;
+    }
 
     [HttpPost]
     public IActionResult Add(Pais paisViewModel)

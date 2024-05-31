@@ -5,8 +5,13 @@ namespace API.DAL;
 
 public class EstadoRepository : IEstadoRepository
 {
-    private readonly ConnectionContext _context = new ConnectionContext();
-    
+    private readonly ConnectionContext _context;
+
+    public EstadoRepository(ConnectionContext context)
+    {
+        _context = context;
+    }
+
     public void Add(Estado estado)
     {
         _context.Estado.Add(estado);

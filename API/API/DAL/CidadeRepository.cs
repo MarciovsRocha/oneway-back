@@ -5,8 +5,13 @@ namespace API.DAL;
 
 public class CidadeRepository : ICidadeRepository
 {
-    private readonly ConnectionContext _context = new ConnectionContext();
-    
+    private readonly ConnectionContext _context;
+
+    public CidadeRepository(ConnectionContext context)
+    {
+        _context = context;
+    }
+
     public void Add(Cidade cidade)
     {
         _context.Cidade.Add(cidade);

@@ -5,8 +5,12 @@ namespace API.DAL;
 
 public class PaisRepository : IPaisRepository
 {
-    private readonly ConnectionContext _context = new ConnectionContext();
+    private readonly ConnectionContext _context;
 
+    public PaisRepository(ConnectionContext context)
+    {
+        _context = context;
+    }
 
     public void Add(Pais pais)
     {

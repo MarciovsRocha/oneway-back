@@ -5,8 +5,13 @@ namespace API.DAL;
 
 public class ProdutoRepository : IProdutoRepository
 {
-    private readonly ConnectionContext _context = new ConnectionContext();
-    
+    private readonly ConnectionContext _context;
+
+    public ProdutoRepository(ConnectionContext context)
+    {
+        _context = context;
+    }
+
     public void Add(Produto produto)
     {
         _context.Produto.Add(produto);

@@ -8,8 +8,12 @@ namespace API.Controllers;
 [Route("user")]
 public class UserController : ControllerBase
 {
-    private readonly IUserRepository _userRepository = new UserRepository();
+    private readonly IUserRepository _userRepository;
 
+    public UserController(IUserRepository userRepository)
+    {
+        _userRepository = userRepository;
+    }
 
     [HttpPost]
     public async Task<IActionResult> AddAsync(User user)

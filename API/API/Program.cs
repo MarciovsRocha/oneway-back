@@ -1,16 +1,15 @@
 using System.Text.Json.Serialization;
-using API;
 using API.DAL;
 using API.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-var OrigensParaCors = "_OrigensParaCors";
+var origensParaCors = "_OrigensParaCors";
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddCors(options =>
-    options.AddPolicy(name: OrigensParaCors,
+    options.AddPolicy(name: origensParaCors,
         policy =>
         {
             policy.WithOrigins(
@@ -23,6 +22,12 @@ builder.Services.AddCors(options =>
 );
 
 builder.Services.AddControllers();
+
+// configurando conexão com banco de dados
+builder.Services.AddDbContext<IConnectionContext, ConnectionContext>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("Production"))
+);
+
 
 // Configuração para ignorar ciclos dentre relacionamentos dos objetos
 builder.Services.AddControllers().AddJsonOptions(
@@ -48,7 +53,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(OrigensParaCors);
+app.UseCors(origensParaCors);
 
 app.UseHttpsRedirection();
 

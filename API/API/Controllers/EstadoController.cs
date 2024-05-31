@@ -9,8 +9,13 @@ namespace API.Controllers;
 [Route("api/v1/estado")]
 public class EstadoController : ControllerBase
 {
-    private readonly IEstadoRepository _estadoRepository = new EstadoRepository();
-    
+    private readonly IEstadoRepository _estadoRepository;
+
+    public EstadoController(IEstadoRepository estadoRepository)
+    {
+        _estadoRepository = estadoRepository;
+    }
+
     [HttpPost]
     public IActionResult Add(Estado estado)
     {

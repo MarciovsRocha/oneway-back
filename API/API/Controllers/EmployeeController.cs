@@ -8,8 +8,12 @@ namespace API.Controllers;
 [Route("api/v1/emploee")]
 public class EmployeeController : ControllerBase
 {
-    private readonly IEmployeeRepository _employeeRepository = new EmployeeRepository();
-    
+    private readonly IEmployeeRepository _employeeRepository;
+
+    public EmployeeController(IEmployeeRepository employeeRepository)
+    {
+        _employeeRepository = employeeRepository;
+    }
 
     [HttpPost]
     public IActionResult Add(Employee employee)

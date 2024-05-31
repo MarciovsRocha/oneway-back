@@ -6,8 +6,13 @@ namespace API.DAL;
 public class UserRepository : IUserRepository
 {
 
-    private readonly ConnectionContext _context = new ConnectionContext();
-    
+    private readonly ConnectionContext _context;
+
+    public UserRepository(ConnectionContext context)
+    {
+        _context = context;
+    }
+
     public void Add(User user)
     {
         _context.User.Add(user);
