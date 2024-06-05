@@ -10,5 +10,5 @@ public class Produto
     public int? Id_Cidade { get; set; }
     public string? Descricao { get; set; }
     public int Id_Tipo { get; set; }
-    public Cidade Cidade { get; set; }
+    public Cidade? Cidade { get; set; }
 }
