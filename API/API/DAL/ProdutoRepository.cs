@@ -49,6 +49,11 @@ public class ProdutoRepository : IProdutoRepository
 
     public List<Produto> GetByType(int type)
     {
-        return _context.Produto.Where(prod => prod.Id_Tipo == type).ToList();
+        return _context.Produto
+            .Where(prod => prod.Id_Tipo == type)
+            .Include(produto => produto.Cidade)
+            .ThenInclude(cidade => cidade.Estado)
+            .ThenInclude(estado => estado.Pais)
+            .ToList();
     }
 }
