@@ -11,4 +11,5 @@ public class Produto
     public string? Descricao { get; set; }
     public int Id_Tipo { get; set; }
     public Cidade? Cidade { get; set; }
+    public IList<ViagemProduto> ViagemProdutos { get; set; }
 }

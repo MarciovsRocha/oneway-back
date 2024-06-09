@@ -18,7 +18,7 @@ public class UserController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddAsync(User user)
     {   
-        if (user == null || string.IsNullOrEmpty(user.email) || string.IsNullOrEmpty(user.senha))
+        if (user == null || string.IsNullOrEmpty(user.email))
         {
             return BadRequest("Campos inválidos.");
         }
@@ -28,7 +28,7 @@ public class UserController : ControllerBase
         {
             return BadRequest("O e-mail já está em uso.");
         }
-        await _userRepository.CreateAsync(new User(user.nome, formattedEmail, user.senha.Trim(), null));
+        await _userRepository.CreateAsync(new User(user.nome, formattedEmail));
         return Ok();
     }
 
