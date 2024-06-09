@@ -11,11 +11,23 @@ public class ConnectionContext : DbContext, IConnectionContext
     public DbSet<Cidade> Cidade { get; set; }
     public DbSet<Produto> Produto { get; set; }
     public DbSet<User> User { get; set; }
+    public DbSet<Viagem> Viagems { get; set; }
+    public DbSet<ViagemProduto> ViagemProdutos { get; set; }
 
     public ConnectionContext(DbContextOptions options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<ViagemProduto>().HasKey(vp => new {vp.ViagemId, vp.ProdutoId});
+        modelBuilder.Entity<ViagemProduto>()
+            .HasOne(vp => vp.Viagem)
+            .WithMany(viagem => viagem.ViagemProdutos)
+            .HasForeignKey(vp => vp.ViagemId);
+        modelBuilder.Entity<ViagemProduto>()
+            .HasOne(vp => vp.Produto)
+            .WithMany(produto => produto.ViagemProdutos)
+            .HasForeignKey(vp => vp.ProdutoId);
+            
         modelBuilder.Entity<Employee>().HasKey(e => e.id);
         modelBuilder.Entity<Pais>()
             .HasMany(p => p.Estados)
