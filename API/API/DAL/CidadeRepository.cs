@@ -14,6 +14,12 @@ public class CidadeRepository : ICidadeRepository
 
     public void Add(Cidade cidade)
     {
+         cidade = new Cidade
+        {
+            Id_Estado = cidade.Id_Estado,
+            Nome = cidade.Nome
+        };
+        
         _context.Cidade.Add(cidade);
         _context.SaveChanges();
     }
