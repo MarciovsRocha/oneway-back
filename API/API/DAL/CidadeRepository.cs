@@ -66,4 +66,17 @@ public class CidadeRepository : ICidadeRepository
             })
             .ToList();
     }
+
+    public List<CidadeBuscaDTO> GetLocationList(string nome)
+    {   
+        return _context.Cidade
+            .AsNoTracking() 
+            .Where(cidade => cidade.Nome != null && cidade.Nome.ToLower().Trim().Contains(nome.Trim().ToLower()))
+            .Select(cidade => new CidadeBuscaDTO
+            {
+                Value = $"{cidade.Nome}, {cidade.Estado.Nome}, {cidade.Estado.Pais.Nome}",
+                Id_Cidade = cidade.Id
+            })
+            .ToList();
+    }
 }

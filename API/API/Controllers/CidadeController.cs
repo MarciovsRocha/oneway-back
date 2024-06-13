@@ -64,11 +64,17 @@ public class CidadeController : ControllerBase
         return Ok();
     }
 
-     [HttpGet("produto/top={top:int}")]
+    [HttpGet("produto/top={top:int}")]
     public IActionResult GetTopCidadesByProductCount(int top)
     {
         List<CidadeProdutosDTO> cidades = _cidadeRepository.GetTopCitiesByProductCount(top);
         return Ok(cidades);
+    }
+
+    [HttpGet("busca/nome={nome}")]
+    public IActionResult GetLocationList(string nome)
+    {
+        return Ok(_cidadeRepository.GetLocationList(nome));
     }
     
 }
