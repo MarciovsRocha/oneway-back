@@ -38,4 +38,11 @@ public class UserController : ControllerBase
         var users = _userRepository.Get();
         return Ok(users);
     }
+
+    [HttpGet("total")]
+    public IActionResult GetTotalUsuarios()
+    {
+        int totalUsuarios = _userRepository.GetTotalUsers();
+        return Ok(totalUsuarios);
+    }
 }

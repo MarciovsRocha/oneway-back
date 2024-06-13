@@ -64,4 +64,10 @@ public class ProdutoController : ControllerBase
         return Ok(produto);
     }
     
+     [HttpGet("total/type")]
+    public IActionResult GetTotalProductsByType()
+    {
+        List<ProdutoTiposDTO> produtosPorTipo = _produtoRepository.GetTotalProductsByType();
+        return Ok(produtosPorTipo);
+    }
 }

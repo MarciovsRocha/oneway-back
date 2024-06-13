@@ -51,4 +51,19 @@ public class CidadeRepository : ICidadeRepository
         _context.Cidade.Remove(cidade_remove);
         _context.SaveChanges();
     }
+
+    public List<CidadeProdutosDTO> GetTopCitiesByProductCount(int top)
+    {
+        return _context.Cidade
+            .Include(c => c.Produtos)
+            .OrderByDescending(c => c.Produtos.Count)
+            .Take(top)
+            .Select(c => new CidadeProdutosDTO
+            {
+                Id = c.Id.Value,
+                Nome = c.Nome,
+                Produto_Qtd = c.Produtos.Count
+            })
+            .ToList();
+    }
 }

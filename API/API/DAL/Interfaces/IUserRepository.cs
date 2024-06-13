@@ -8,4 +8,5 @@ public interface IUserRepository
     Task CreateAsync(User user);
     List<User> Get();
     Task<User> GetUserByEmailAsync(string email);
+    int GetTotalUsers();
 }
