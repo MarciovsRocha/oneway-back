@@ -63,6 +63,13 @@ public class CidadeController : ControllerBase
         _cidadeRepository.Remove(id);
         return Ok();
     }
+
+     [HttpGet("produto/top={top:int}")]
+    public IActionResult GetTopCidadesByProductCount(int top)
+    {
+        List<CidadeProdutosDTO> cidades = _cidadeRepository.GetTopCitiesByProductCount(top);
+        return Ok(cidades);
+    }
     
 }
 

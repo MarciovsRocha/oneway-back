@@ -56,4 +56,16 @@ public class ProdutoRepository : IProdutoRepository
             .ThenInclude(estado => estado.Pais)
             .ToList();
     }
+
+    public List<ProdutoTiposDTO> GetTotalProductsByType()
+    {
+        return _context.Produto
+            .GroupBy(p => p.Id_Tipo)
+            .Select(g => new ProdutoTiposDTO
+            {
+                Id_Tipo = g.Key,
+                Produtos_Qtd = g.Count()
+            })
+            .ToList();
+    }
 }

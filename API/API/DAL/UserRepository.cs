@@ -34,4 +34,9 @@ public class UserRepository : IUserRepository
     {
         return await _context.User.FirstOrDefaultAsync(user => user.email == email);
     }
+
+     public int GetTotalUsers()
+    {
+        return _context.User.Count();
+    }
 }
