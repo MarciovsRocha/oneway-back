@@ -70,4 +70,11 @@ public class ProdutoController : ControllerBase
         List<ProdutoTiposDTO> produtosPorTipo = _produtoRepository.GetTotalProductsByType();
         return Ok(produtosPorTipo);
     }
+
+    [HttpGet("type={type:int}/city={cityFrom:int}/city={cityTo:int}")]
+    public IActionResult GetByTypeAndCities(int type, int? cityFrom, int? cityTo)
+    {
+        var produto = _produtoRepository.GetByTypeAndCities(type, cityFrom, cityTo);
+        return Ok(produto);
+    }
 }

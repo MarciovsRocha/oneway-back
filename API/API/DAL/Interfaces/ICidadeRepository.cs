@@ -10,4 +10,5 @@ public interface ICidadeRepository
     void Remove(Cidade cidade);
     void Remove(int id_cidade);
     List<CidadeProdutosDTO> GetTopCitiesByProductCount(int top);
+    List<CidadeBuscaDTO> GetLocationList(string nome);
 }

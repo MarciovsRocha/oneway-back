@@ -14,6 +14,12 @@ public class CidadeRepository : ICidadeRepository
 
     public void Add(Cidade cidade)
     {
+         cidade = new Cidade
+        {
+            Id_Estado = cidade.Id_Estado,
+            Nome = cidade.Nome
+        };
+        
         _context.Cidade.Add(cidade);
         _context.SaveChanges();
     }
@@ -63,6 +69,19 @@ public class CidadeRepository : ICidadeRepository
                 Id = c.Id.Value,
                 Nome = c.Nome,
                 Produto_Qtd = c.Produtos.Count
+            })
+            .ToList();
+    }
+
+    public List<CidadeBuscaDTO> GetLocationList(string nome)
+    {   
+        return _context.Cidade
+            .AsNoTracking() 
+            .Where(cidade => cidade.Nome != null && cidade.Nome.ToLower().Trim().Contains(nome.Trim().ToLower()))
+            .Select(cidade => new CidadeBuscaDTO
+            {
+                Valor = $"{cidade.Nome}, {cidade.Estado.Nome}, {cidade.Estado.Pais.Nome}",
+                Id_Cidade = cidade.Id
             })
             .ToList();
     }

@@ -10,4 +10,5 @@ public interface IProdutoRepository
     void Remove(Produto produto);
     List<Produto> GetByType(int type);
     List<ProdutoTiposDTO> GetTotalProductsByType();
+    List<Produto> GetByTypeAndCities(int type, int? cityFrom, int? cityTo);
 }

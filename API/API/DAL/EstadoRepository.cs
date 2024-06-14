@@ -14,6 +14,12 @@ public class EstadoRepository : IEstadoRepository
 
     public void Add(Estado estado)
     {
+        estado = new Estado
+        {
+            Nome = estado.Nome,
+            Id_Pais = estado.Id_Pais
+        };
+
         _context.Estado.Add(estado);
         _context.SaveChanges();
     }

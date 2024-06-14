@@ -68,4 +68,29 @@ public class ProdutoRepository : IProdutoRepository
             })
             .ToList();
     }
+
+    public List<Produto> GetByTypeAndCities(int type, int? cityFrom, int? cityTo)
+    {
+        var query = _context.Produto
+        .Where(prod => prod.Id_Tipo == type)
+        .Include(produto => produto.Cidade)
+        .ThenInclude(cidade => cidade.Estado)
+        .ThenInclude(estado => estado.Pais)
+        .AsQueryable();
+
+        if (cityFrom.HasValue && cityFrom != 0 && cityTo.HasValue && cityTo != 0)
+        {
+            query = query.Where(prod => prod.Cidade.Id == cityFrom.Value || prod.Cidade.Id == cityTo.Value);
+        }
+        else if (cityFrom.HasValue && cityFrom != 0)
+        {
+            query = query.Where(prod => prod.Cidade.Id == cityFrom.Value);
+        }
+        else if (cityTo.HasValue && cityTo != 0)
+        {
+            query = query.Where(prod => prod.Cidade.Id == cityTo.Value);
+        }
+
+        return query.ToList();
+    }
 }
