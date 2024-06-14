@@ -74,7 +74,7 @@ public class CidadeRepository : ICidadeRepository
             .Where(cidade => cidade.Nome != null && cidade.Nome.ToLower().Trim().Contains(nome.Trim().ToLower()))
             .Select(cidade => new CidadeBuscaDTO
             {
-                Value = $"{cidade.Nome}, {cidade.Estado.Nome}, {cidade.Estado.Pais.Nome}",
+                Valor = $"{cidade.Nome}, {cidade.Estado.Nome}, {cidade.Estado.Pais.Nome}",
                 Id_Cidade = cidade.Id
             })
             .ToList();
